@@ -1,0 +1,10 @@
+const express=requires('express');
+const {issueBook,returnBook}=require('../controllers/issueBookController');
+const router=express.Router();
+
+router.post('/',issueBook)
+router.put('/',returnBook)
+module.exports=router;
+
+
+
