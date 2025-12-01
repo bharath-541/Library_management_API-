@@ -1,5 +1,6 @@
 const { response, request } = require("express")
 const book = require("../models/Book");
+const Book = require("../models/Book");
 
 const books = []
 
@@ -32,27 +33,24 @@ getBookById=async(request, response)=>{
     }
 };
 
-createBook=(request, response)=>{
+createBook=async(request, response)=>{
     try{
         const {title , author , publishedYear , price , quantity } = request.body;
 
         if (!title || !author || !publishedYear || !price || !quantity) {
             return response.status(400).json({message:"Please Provide all the Required Feilds"});
-
-            
         }
 
-        const newbook = {
-            id:books.length+1 , 
+        const newbook = new Book({
             title ,
             author,
             publishedYear ,
             price ,
             quantity ,
             status:"Available"
-        };
-
-        books.push(newbook);
+        });
+        
+        await newbook.save();
         response.status(201).json({message: "Book Created Successfully", data : newbook});
     }
     catch(error){
