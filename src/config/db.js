@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/libraryDB' , );
+mongoose.connect('mongodb+srv://pernibharath15:pernibharath15@inscluster.hgsenvh.mongodb.net/?appName=InsCluster' , );
 const db= mongoose.connection;
 
 db.on('connected' , ()=>{
