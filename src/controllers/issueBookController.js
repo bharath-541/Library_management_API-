@@ -2,7 +2,7 @@ const express = require('express')
 const IssueBook=require('../models/Issueebook');
 const Book=require('../models/Book');
 
-issuebook=async(req,res)=>{
+issueBook=async(req,res)=>{
     try {
         const {bookId, bookName, studentName, issueDate, returnDate, status} = req.body;
         const book = await Book.findById(bookId);
@@ -25,7 +25,7 @@ issuebook=async(req,res)=>{
             returnDate,
             status:"Issued"
         });
-        await issuebook.save()
+        await newIssueBook.save()
         book.quantity -=1;
         await book.save();
         
@@ -40,7 +40,7 @@ issuebook=async(req,res)=>{
     }
 }
 
-returnbook= async (req,res)=>{
+returnBook= async (req,res)=>{
     try {
         const {issueBookId} = req.body;
         const issueBook = await IssueBook
@@ -67,4 +67,4 @@ returnbook= async (req,res)=>{
 
     }
 }
-module.exports={issuebook , returnbook};
+module.exports={issueBook, returnBook};
