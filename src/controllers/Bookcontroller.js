@@ -19,17 +19,14 @@ getAllbooks =async (request , response)=>{
 
 getBookById=async(request, response)=>{
     try{
-        // const book=books.find((book)=>book.id===parseInt(request.params.id));
-        const book=await book.findById(request.params.id);
-        if (!book) {{
+        const foundBook=await Book.findById(request.params.id);
+        if (!foundBook) {
             return response.status(404).json({message:"Book Not Found"});
-
-        }}
-        response.status(200).json(book);
+        }
+        response.status(200).json(foundBook);
     }
     catch(error){
         response.status(500).json({message:error.message});
-
     }
 };
 
