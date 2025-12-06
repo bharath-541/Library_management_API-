@@ -1,10 +1,8 @@
-const express=require('express');
-const {issueBook,returnBook}=require('../controllers/issueBookController');
-const router=express.Router();
+const express = require('express');
+const { issueBook, returnBook } = require('../controllers/issueBookController');
+const authMiddleware = require('../middleware/authMiddleware');
+const router = express.Router();
 
-router.post('/',issueBook)
-router.put('/',returnBook)
-module.exports=router;
-
-
-
+router.post('/', authMiddleware, issueBook);
+router.put('/', authMiddleware, returnBook);
+module.exports = router;

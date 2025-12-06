@@ -1,18 +1,15 @@
-const mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://pernibharath15:pernibharath15@inscluster.hgsenvh.mongodb.net/?appName=InsCluster' , );
-const db= mongoose.connection;
+mongoose.connect('mongodb://localhost:27017/Backend');
 
-db.on('connected' , ()=>{
+const db = mongoose.connection;
 
-    console.log('Database connected successfully');
+db.on('connected', () => {
+  console.log('Database connected successfully');
 });
 
-db.on('error' , (err)=>{
-    console.log('Database connection error: ' + err);
+db.on('error', (err) => {
+  console.log('Database connection error: ' + err);
 });
 
-module.exports= db;
-
-
-
+module.exports = db;
